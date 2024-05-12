@@ -1,0 +1,30 @@
+.container {
+}
+
+.title {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #112f59;
+}
+
+.searchfield {
+  display: block;
+  width: 300px;
+  height: 30px;
+  border: 1px solid #c8cbcf;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #c8cbcf;
+  margin-bottom: 30px;
+  padding: 6px;
+  color: #112f59;
+  font-size: 20px;
+}
+
+.searchfield:focus {
+  outline: none;
+  border: 1px solid #112f59;
+  box-shadow: 0px 0px 10px #112f59;
+}
