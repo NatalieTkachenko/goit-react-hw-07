@@ -1,18 +1,34 @@
-// === Styles ===
-import styles from "./ContactList.module.css";
+// === Lib modules ===
+import { useSelector, useDispatch } from "react-redux";
 
+// === Components ===
 import Contact from "./Contact/Contact.jsx";
 
-export default function ContactList({ contacts, onDelete }) {
+// === Styles ===
+import styles from "./ContactList.module.css";
+import { nanoid } from "nanoid";
+
+export default function ContactList() {
+  const phoneContacts = useSelector((state) => {
+    return state.contacts.items;
+  });
+  const filterCriteria = useSelector((state) => { 
+    return state.filter.name;
+  })
+
+  const filteredContacts = () => {
+  return filterCriteria ? phoneContacts.filter((contact) => contact.name.toLowerCase().includes(filterCriteria.toLowerCase())) : phoneContacts;
+}
+  
+
   return (
     <div className={styles.contactList}>
-      {contacts.map((contact) => {
+      { filteredContacts().map((contact) => {
         return (
           <Contact
-            key={contact.id}
+            key={nanoid()}
             name={contact.name}
             number={contact.number}
-            onDelete={onDelete}
             id={contact.id}
           />
         );

@@ -2,23 +2,33 @@
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+
+// === Redux ===
+import { addContact } from "../../redux/contactsSlice";
+
+
 // === Styles ===
 import styles from "./ContactForm.module.css";
 
-export default function ContactForm({ onAddContact }) {
+export default function ContactForm() {
+  const dispatch = useDispatch();
+
   const NameFieldId = useId();
   const NumberFieldId = useId();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().min(3, "Please enter at least 3 characters").required(),
-    number: Yup.string().max(50, "Please enter no more than 50 characters").required(),
+    number: Yup.string()
+      .max(50, "Please enter no more than 50 characters")
+      .required(),
   });
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    console.log(actions);
     actions.resetForm();
-    onAddContact(values);
+    const action = addContact(values);
+    dispatch (action);
+    
   };
   return (
     <Formik
@@ -39,7 +49,7 @@ export default function ContactForm({ onAddContact }) {
           name="name"
           id={NameFieldId}
         ></Field>
-        <ErrorMessage className={styles.error} name="name" component ="div" />
+        <ErrorMessage className={styles.error} name="name" component="div" />
         <label className={styles.labeltitle} htmlFor={NumberFieldId}>
           Number
         </label>
@@ -50,7 +60,7 @@ export default function ContactForm({ onAddContact }) {
           name="number"
           id={NumberFieldId}
         ></Field>
-        <ErrorMessage className={styles.error} name="number" component ="div" />
+        <ErrorMessage className={styles.error} name="number" component="div" />
 
         <button type="Submit">Add Contact</button>
       </Form>
