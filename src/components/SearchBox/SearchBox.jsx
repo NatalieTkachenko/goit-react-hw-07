@@ -7,7 +7,7 @@ import styles from "./SearchBox.module.css";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filter.name);
+  const selectNameFilter = useSelector((state) => state.filter.name);
 
   const handleInputChange = () => {
     console.log(event.target.value);
@@ -20,7 +20,7 @@ export default function SearchBox() {
       <input
         className={styles.searchfield}
         type="text"
-        value={filter}
+        value={selectNameFilter}
         onChange={handleInputChange}
       ></input>
     </div>

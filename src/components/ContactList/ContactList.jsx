@@ -6,10 +6,10 @@ import Contact from "./Contact/Contact.jsx";
 
 // === Styles ===
 import styles from "./ContactList.module.css";
-import { nanoid } from "nanoid";
+
 
 export default function ContactList() {
-  const phoneContacts = useSelector((state) => {
+  const selectContacts = useSelector((state) => {
     return state.contacts.items;
   });
   const filterCriteria = useSelector((state) => { 
@@ -17,7 +17,7 @@ export default function ContactList() {
   })
 
   const filteredContacts = () => {
-  return filterCriteria ? phoneContacts.filter((contact) => contact.name.toLowerCase().includes(filterCriteria.toLowerCase())) : phoneContacts;
+  return filterCriteria ? selectContacts.filter((contact) => contact.name.toLowerCase().includes(filterCriteria.toLowerCase())) : selectContacts;
 }
   
 
@@ -26,7 +26,7 @@ export default function ContactList() {
       { filteredContacts().map((contact) => {
         return (
           <Contact
-            key={nanoid()}
+            key={contact.id}
             name={contact.name}
             number={contact.number}
             id={contact.id}
