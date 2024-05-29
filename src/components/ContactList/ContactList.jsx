@@ -6,18 +6,16 @@ import Contact from "./Contact/Contact.jsx";
 
 // === Styles ===
 import styles from "./ContactList.module.css";
+import { selectNameFilter } from "../../redux/filtersSlice.js";
+import { selectContacts } from "../../redux/contactsSlice.js";
 
 
 export default function ContactList() {
-  const selectContacts = useSelector((state) => {
-    return state.contacts.items;
-  });
-  const filterCriteria = useSelector((state) => { 
-    return state.filter.name;
-  })
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectNameFilter)
 
   const filteredContacts = () => {
-  return filterCriteria ? selectContacts.filter((contact) => contact.name.toLowerCase().includes(filterCriteria.toLowerCase())) : selectContacts;
+  return filter ? contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase())) : contacts;
 }
   
 

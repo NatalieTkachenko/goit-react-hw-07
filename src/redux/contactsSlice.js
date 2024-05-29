@@ -30,3 +30,7 @@ export const { addContact, deleteContact } = contactsSlice.actions;
 // === Reducers ===
 
 export const contactsReducer = contactsSlice.reducer;
+
+// === Selectors ===
+
+export const selectContacts = (state) => state.contacts.items;
