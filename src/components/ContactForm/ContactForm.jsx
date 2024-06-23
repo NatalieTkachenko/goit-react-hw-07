@@ -6,12 +6,10 @@ import { useDispatch } from "react-redux";
 import { nanoid } from "nanoid";
 
 // === Redux ===
-import { addContact } from "../../redux/contactsSlice";
-
+import { addContact } from "../../redux/contactsOps";
 
 // === Styles ===
 import styles from "./ContactForm.module.css";
-
 
 export default function ContactForm() {
   const dispatch = useDispatch();
@@ -29,10 +27,9 @@ export default function ContactForm() {
   const handleSubmit = (values, actions) => {
     actions.resetForm();
     console.log(values);
-    values.id = nanoid();
+    // values.id = nanoid();
     const action = addContact(values);
-    dispatch (action);
-    
+    dispatch(action);
   };
   return (
     <Formik

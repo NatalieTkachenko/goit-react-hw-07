@@ -5,7 +5,6 @@ import { changeFilter, selectNameFilter } from "../../redux/filtersSlice";
 // === Styles ===
 import styles from "./SearchBox.module.css";
 
-
 export default function SearchBox() {
   const dispatch = useDispatch();
   const filter = useSelector(selectNameFilter);
@@ -13,7 +12,6 @@ export default function SearchBox() {
   const handleInputChange = () => {
     console.log(event.target.value);
     dispatch(changeFilter(event.target.value));
-    
   };
   return (
     <div className={styles.container}>
